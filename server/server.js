@@ -2,7 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import tripRoutes from './routes/trips.js'
 import activityRoutes from './routes/activities.js'
-
+import destinationsRoutes from './routes/destinations.js'
+import trip_destinationsRoutes from './routes/trip_destinations.js'
 
 
 const app = express()
@@ -21,6 +22,12 @@ app.use('/api/trips', tripRoutes)
 
 // use the activityRoutes router as middleware for any request that starts with /api/activities 
 app.use('/api/activities', activityRoutes)
+
+// use the destinationsRoutes router as middleware for any request that starts with /api/destinations 
+app.use('/api/destinations', destinationsRoutes)
+
+app.use('/api/trip_destination', trip_destinationsRoutes)
+
 
 const PORT = process.env.PORT || 3001
 
