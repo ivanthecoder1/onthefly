@@ -18,15 +18,22 @@ const App = () => {
   const [trips, setTrips] = useState([]);
   const [destinations, setDestinations] = useState([]);
 
-  // Fetch trips from our api and display it
+  // Fetch trips and destinations from our api and display it
   useEffect(() => {
     const fetchTrips = async () => {
       const response = await fetch('/api/trips')
       const data = await response.json()
       setTrips(data)
     }
+
+    const fetchDestinations = async () => {
+      const response = await fetch('/api/destinations')
+      const data = await response.json()
+      setDestinations(data)
+    }
   
     fetchTrips()
+    fetchDestinations()
   }, [])
 
   
