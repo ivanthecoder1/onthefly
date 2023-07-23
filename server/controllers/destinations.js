@@ -18,7 +18,7 @@ const createDestination = async (req, res) => {
             [destination, description, city, country, img_url, flag_img_url]
         );
 
-        res.status(201).json(results.rows[0]);
+        res.status(201).json(results.rows);
     } catch (error) {
         res.status(409).json({ error: error.message });
     }
@@ -28,7 +28,7 @@ const createDestination = async (req, res) => {
 const getDestinations = async (req, res) => {
     try {
         // Execute the database query to retrieve all rows from the "destinations" table
-        const results = await pool.query('SELECT * FROM destinations');
+        const results = await pool.query('SELECT * FROM destinations ORDER BY id ASC');
 
         // If the query is successful, send the result (rows) as a JSON response with a status code of 200 (OK)
         res.status(200).json(results.rows);

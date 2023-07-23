@@ -57,9 +57,7 @@ const CreateDestination = () => {
 
         // Call the addDestination function to create the destination, then call the createTripDestination function to create the trip-destination association
         // Finally, redirect the user to the homepage after the operations are completed
-        addDestination()
-            .then(res => createTripDestination(res))
-            .then(res => window.location = '/')
+        addDestination().then(res => createTripDestination(res)).then(res => window.location = '/')
     }
 
 
