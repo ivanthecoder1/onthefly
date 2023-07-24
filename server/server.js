@@ -4,6 +4,7 @@ import tripRoutes from './routes/trips.js'
 import activityRoutes from './routes/activities.js'
 import destinationsRoutes from './routes/destinations.js'
 import trip_destinationsRoutes from './routes/trip_destinations.js'
+import userTripRoutes from './routes/user-trips.js'
 
 // for github authenication 
 import passport from 'passport'
@@ -53,6 +54,8 @@ app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationsRoutes)
 
 app.use('/api/trip_destination', trip_destinationsRoutes)
+
+app.use('/users-trips', userTripRoutes)
 
 app.use(session({
     secret: 'codepath', // This is used to sign the session ID cookie.
