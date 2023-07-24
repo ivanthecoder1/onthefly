@@ -18,11 +18,12 @@ const createDestination = async (req, res) => {
             [destination, description, city, country, img_url, flag_img_url]
         );
 
-        res.status(201).json(results.rows);
+        res.status(201).json(results.rows[0]);
     } catch (error) {
         res.status(409).json({ error: error.message });
     }
 };
+
 
 // Retrieve all destinations
 const getDestinations = async (req, res) => {
@@ -93,9 +94,9 @@ const deleteDestination = async (req, res) => {
 
 
 export default {
+    createDestination,
     getDestinations,
     getDestination,
-    createDestination,
     deleteDestination,
     updateDestination,
 }
