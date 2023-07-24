@@ -5,12 +5,35 @@ import activityRoutes from './routes/activities.js'
 import destinationsRoutes from './routes/destinations.js'
 import trip_destinationsRoutes from './routes/trip_destinations.js'
 
+// for github authenication 
+import passport from 'passport'
+import session from 'express-session'
+import { GitHub } from './config/auth.js'
+
 
 const app = express()
 
 // middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,POST,PUT,DELETE,PATCH',
+    credentials: true // allow cookies (and other credentials) to be included in CORS requests
+}))
+
+// set up passport: Express middleware specifically created to facilitate the login process
+app.use(passport.initialize())
+app.use(passport.session())
+// configure the passport middleware to use our GitHub strategy 
+passport.use(GitHub)
+
+passport.serializeUser((user, done) => {
+    done(null, user)
+})
+
+passport.deserializeUser((user, done) => {
+    done(null, user)
+})
 
 // route handler
 app.get('/', (req, res) => {
@@ -27,6 +50,12 @@ app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationsRoutes)
 
 app.use('/api/trip_destination', trip_destinationsRoutes)
+
+app.use(session({
+    secret: 'codepath', // This is used to sign the session ID cookie.
+    resave: false,      // Set to false to save the session only if modified.
+    saveUninitialized: true // Set to true to save uninitialized sessions to the store.
+}))
 
 
 const PORT = process.env.PORT || 3001
