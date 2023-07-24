@@ -10,6 +10,9 @@ import passport from 'passport'
 import session from 'express-session'
 import { GitHub } from './config/auth.js'
 
+// import authenication routes
+import authRoutes from './routes/auth.js'
+
 
 const app = express()
 
@@ -56,6 +59,8 @@ app.use(session({
     resave: false,      // Set to false to save the session only if modified.
     saveUninitialized: true // Set to true to save uninitialized sessions to the store.
 }))
+
+app.use('/auth', authRoutes)
 
 
 const PORT = process.env.PORT || 3001
