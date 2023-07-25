@@ -6,6 +6,7 @@ const CreateActivity = () => {
 
     const [activity, setActivity] = useState({activity: "" })
     const {trip_id} = useParams();
+    const api_url = 'http://localhost:3001';
 
 
     const handleChange = (event) => {
@@ -29,7 +30,8 @@ const CreateActivity = () => {
           body: JSON.stringify(activity)   
         }
       
-        fetch('/api/activities/' + trip_id, options)
+        fetch(`${api_url}/api/activities/${trip_id}`, options)
+        
         window.location.href = '/'
       }
 

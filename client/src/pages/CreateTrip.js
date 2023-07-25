@@ -4,6 +4,7 @@ import './CreateTrip.css'
 const CreateTrip = () => {
     // Holds data for a new post
     const [post, setPost] = useState({ id: 0, title: "", description: "", img_url: "", num_days: 0, start_date: "", end_date: "", total_cost: 0.0 })
+    const api_url = 'http://localhost:3001';
 
     // updates the state post whenever the user types or modifies data in the form fields
     const handleChange = (event) => {
@@ -19,6 +20,7 @@ const CreateTrip = () => {
     // Create a trip using POST method  
     const createPost = (event) => {
         event.preventDefault()
+        
 
         // configuration for the POST request to the server. It includes the HTTP method, headers, and the body of the request
         const options = {
@@ -30,7 +32,8 @@ const CreateTrip = () => {
         }
 
         // Performs the actual HTTP request to the server
-        fetch('/api/trips', options)
+        fetch(`${api_url}/api/trips`, options)
+        
 
         // redirect to root page
         window.location.href = '/'

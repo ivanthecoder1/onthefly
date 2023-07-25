@@ -4,7 +4,7 @@ import tripRoutes from './routes/trips.js'
 import activityRoutes from './routes/activities.js'
 import destinationsRoutes from './routes/destinations.js'
 import trip_destinationsRoutes from './routes/trip_destinations.js'
-import userTripRoutes from './routes/user-trips.js'
+import userTripRoutes from './routes/users-trips.js'
 
 // for github authenication 
 import passport from 'passport'

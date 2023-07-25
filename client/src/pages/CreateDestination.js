@@ -6,6 +6,7 @@ const CreateDestination = () => {
 
     const [destination, setDestination] = useState({ destination: "", description: "", city: "", country: "", img_url: "", flag_img_url: "" })
     const { trip_id } = useParams();
+    const api_url = 'http://localhost:3001';
 
     // updates the state post whenever the user types or modifies data in the form fields
     const handleChange = (event) => {
@@ -32,7 +33,7 @@ const CreateDestination = () => {
             }
 
             // Send the POST request to the server to create the destination
-            const response = await fetch('/api/destination/create', options)
+            const response = await fetch(`${api_url}/api/destination/create`, options)
             const data = await response.json() // Parse the response data as JSON
             setDestination(data) // Update the state with the created destination data
             return data.id // Return the id of the created destination
@@ -50,7 +51,7 @@ const CreateDestination = () => {
             }
 
             // Send the POST request to the server to create the trip-destination association
-            const response = await fetch('/api/trips-destinations/create', options)
+            const response = await fetch(`${api_url}/api/trips-destinations/create`, options)
             const data = await response.json() // Parse the response data as JSON
             return data // Return the response data from the server
         }

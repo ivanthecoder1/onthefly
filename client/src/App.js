@@ -14,68 +14,72 @@ import AddToTrip from './pages/AddToTrip';
 
 
 const App = () => {
-  
+
   const [trips, setTrips] = useState([]);
   const [destinations, setDestinations] = useState([]);
+
+  const API_URL = 'http://localhost:3001'
+
 
   // Fetch trips and destinations from our api and display it
   useEffect(() => {
     const fetchTrips = async () => {
-      const response = await fetch('/api/trips')
+      const response = await fetch(`${API_URL}/api/trips`)
       const data = await response.json()
       setTrips(data)
     }
 
     const fetchDestinations = async () => {
-      const response = await fetch('/api/destinations')
+      const response = await fetch(`${API_URL}/api/destinations`)
+
       const data = await response.json()
       setDestinations(data)
     }
-  
+
     fetchTrips()
     fetchDestinations()
   }, [])
 
-  
+
 
   // Sets up routes
   let element = useRoutes([
     {
       path: "/",
-      element:<ReadTrips data={trips}/>
+      element: <ReadTrips data={trips} api_url={API_URL} />
     },
     {
-      path:"/trip/new",
-      element: <CreateTrip />
+      path: "/trip/new",
+      element: <CreateTrip api_url={API_URL} />
     },
     {
-      path:"/edit/:id",
-      element: <EditTrip data={trips} />
+      path: "/edit/:id",
+      element: <EditTrip data={trips} api_url={API_URL} />
     },
     {
-      path:"/destinations",
-      element: <ReadDestinations data={destinations} />
+      path: "/destinations",
+      element: <ReadDestinations data={destinations} api_url={API_URL} />
     },
     {
-      path:"/trip/get/:id",
-      element: <TripDetails data={trips} />
+      path: "/trip/get/:id",
+      element: <TripDetails data={trips} api_url={API_URL} />
     },
     {
-      path:"/destination/new/:trip_id",
-      element: <CreateDestination />
+      path: "/destination/new/:trip_id",
+      element: <CreateDestination api_url={API_URL} />
     },
     {
-      path:"/activity/create/:trip_id",
-      element: <CreateActivity />
+      path: "/activity/create/:trip_id",
+      element: <CreateActivity api_url={API_URL} />
     },
     {
-      path:"/destinations/add/:destination_id",
-      element: <AddToTrip data={trips}/>
+      path: "/destinations/add/:destination_id",
+      element: <AddToTrip data={trips} api_url={API_URL} />
     }
   ]);
 
-  
-  return ( 
+
+  return (
 
     <div className="App">
 
@@ -86,7 +90,7 @@ const App = () => {
         <Link to="/destinations"><button className="headerBtn">Explore Destinations</button></Link>
         <Link to="/trip/new"><button className="headerBtn"> + Add Trip </button></Link>
       </div>
-        {element}
+      {element}
     </div>
 
   );

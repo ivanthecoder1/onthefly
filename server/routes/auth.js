@@ -1,5 +1,6 @@
-const express = require('express');
-const passport = require('passport');
+import passport from 'passport';
+import express from 'express';
+
 const router = express.Router();
 
 // Successful login request

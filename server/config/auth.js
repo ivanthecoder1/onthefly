@@ -1,4 +1,6 @@
 // Configure the GitHub strategy
+import { Strategy as GitHubStrategy } from 'passport-github2';
+
 
 // contain information to configure the GitHub strategy with GitHub app credentials, 
 // including the client ID, secret ID, and callback URL
