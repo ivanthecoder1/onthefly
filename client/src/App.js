@@ -7,10 +7,12 @@ import EditTrip from './pages/EditTrip'
 import CreateDestination from './pages/CreateDestination';
 import ReadDestinations from './pages/ReadDestinations'
 import TripDetails from './pages/TripDetails'
+import AddUserToTrip from './pages/AddUserToTrip.js'
 import { Link } from 'react-router-dom'
 import CreateActivity from './pages/CreateActivity';
 import AddToTrip from './pages/AddToTrip';
 import Login from './pages/Login'
+import Avatar from './components/Avatar'
 
 
 const App = () => {
@@ -119,6 +121,7 @@ const App = () => {
             <Link to='/destinations'><button className='headerBtn'>Explore Destinations</button></Link>
             <Link to='/trip/new'><button className='headerBtn'> + Add Trip </button></Link>
             <button onClick={logout} className='headerBtn'>Logout</button>
+            <Avatar className='avatar' user={user} />
           </div>
           : <></>
       }

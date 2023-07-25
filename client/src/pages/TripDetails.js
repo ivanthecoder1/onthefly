@@ -10,7 +10,9 @@ const TripDetails = ({ data }) => {
     const [post, setPost] = useState({ id: 0, title: "", description: "", img_url: "", num_days: 0, start_date: "", end_date: "", total_cost: 0.0 })
     const [activities, setActivites] = useState([])
     const [destinations, setDestinations] = useState([])
-    
+    const [travelers, setTravelers] = useState([])
+
+
 
     useEffect(() => {
         const result = data.filter(item => item.id === parseInt(id))[0];
@@ -28,7 +30,13 @@ const TripDetails = ({ data }) => {
             setDestinations(data)
         }
 
+        const fetchTravelers = async () => {
+            const response = await fetch(`${api_url}/api/users-trips/users/${id}`)
+            const travelersJson = await response.json()
+            setTravelers(travelersJson)
+        }
 
+        fetchTravelers();
         fetchActivities();
         fetchDestinations();
 
@@ -71,6 +79,18 @@ const TripDetails = ({ data }) => {
                     }
                     <br />
                     <Link to={'../../destination/new/' + id}><button className="addDestinationBtn">+ Add Destination</button></Link>
+                </div>
+                <div className='travelers'>
+                    {
+                        travelers && travelers.length > 0 ?
+                            travelers.map((traveler, index) =>
+                                <p key={index} style={{ color: 'red' }}>
+                                    {traveler.username}
+                                </p>
+                            ) : ''
+                    }
+                    <br />
+                    <Link to={'/users/add/' + id}><button className='addActivityBtn'>+ Add Traveler</button></Link>
                 </div>
             </div>
 
