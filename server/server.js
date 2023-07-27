@@ -24,7 +24,7 @@ app.use(session({
 // middleware
 app.use(express.json())
 app.use(cors({
-    origin: 'https://onthefly.up.railway.app',
+    origin: 'https://onthefly-production-412b.up.railway.app/',
     methods: 'GET,POST,PUT,DELETE,PATCH',
     credentials: true
   }
