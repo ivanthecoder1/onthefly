@@ -7,22 +7,19 @@ import destinationRoutes from './routes/destinations.js'
 import tripDestinationRoutes from './routes/trips-destinations.js'
 import userTripRoutes from './routes/users-trips.js'
 
-// for github authenication 
 import passport from 'passport'
 import session from 'express-session'
 import { GitHub } from './config/auth.js'
-
-// import authenication routes
 import authRoutes from './routes/auth.js'
 
-
+// create express app
 const app = express()
 
 app.use(session({
-    secret: 'codepath', // This is used to sign the session ID cookie.
-    resave: false,      // Set to false to save the session only if modified.
-    saveUninitialized: true // Set to true to save uninitialized sessions to the store.
-}))
+    secret: 'codepath',
+    resave: false,
+    saveUninitialized: true
+ }))
 
 // middleware
 app.use(express.json())
@@ -33,10 +30,8 @@ app.use(cors({
   }
 ))
 
-// set up passport: Express middleware specifically created to facilitate the login process
 app.use(passport.initialize())
 app.use(passport.session())
-// configure the passport middleware to use our GitHub strategy 
 passport.use(GitHub)
 
 passport.serializeUser((user, done) => {
@@ -47,7 +42,6 @@ passport.deserializeUser((user, done) => {
     done(null, user)
 })
 
-// route handler
 app.get('/', (req, res) => {
     res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">✈️ OnTheFly API</h1>')
 })
@@ -62,7 +56,7 @@ app.use('/api/destinations/', destinationRoutes)
 app.use('/api/trips-destinations/', tripDestinationRoutes)
 app.use('/api/users-trips/', userTripRoutes)
 
-
+// connect server on port 3001
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {

@@ -1,8 +1,8 @@
-// Use postgreSQL
 import pg from 'pg'
-import './dotenv.js'
+import dotenv from 'dotenv'
 
-// Create a connection pool so we can make frequent queries to the Postgres database
+dotenv.config()
+
 const config = {
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,

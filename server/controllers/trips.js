@@ -134,5 +134,3 @@ export const deleteTrip = async (req, res) => {
         res.status(409).json( { error: error.message } )
     }
 }
-
-

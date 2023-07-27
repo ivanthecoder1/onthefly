@@ -1,5 +1,8 @@
-import GitHubStrategy from 'passport-github2'
+import { Strategy as GitHubStrategy } from 'passport-github2';
 import { pool } from '../config/database.js'
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const options = {
     clientID: process.env.GITHUB_CLIENT_ID,

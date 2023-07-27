@@ -5,7 +5,7 @@
   font-size: calc(10px + 2vmin);
   color: #373D3F;
   justify-content: center;
-  background-image: url('background.jpg');
+  background-image: url('./assets/background.jpg');
   background-color: #97bfd8a3;
   background-position: right center;
   background-size: cover;
