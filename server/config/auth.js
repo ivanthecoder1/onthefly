@@ -7,7 +7,7 @@ dotenv.config();
 const options = {
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: 'https://onthefly-production.up.railway.app/auth/github/callback'
+    callbackURL: 'https://onthefly-server-iz.up.railway.app/auth/github/callback'
 }
 
 const verify = async (accessToken, refreshToken, profile, callback)  => {

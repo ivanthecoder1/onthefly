@@ -24,7 +24,7 @@ app.use(session({
 // middleware
 app.use(express.json())
 app.use(cors({
-    origin: 'https://onthefly-production-412b.up.railway.app/',
+    origin: 'https://onthefly-client-iz.up.railway.app/',
     methods: 'GET,POST,PUT,DELETE,PATCH',
     credentials: true
   }
@@ -57,7 +57,7 @@ app.use('/api/trips-destinations/', tripDestinationRoutes)
 app.use('/api/users-trips/', userTripRoutes)
 
 // connect server on port 3001
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`)
