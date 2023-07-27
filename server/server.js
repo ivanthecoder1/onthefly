@@ -57,7 +57,7 @@ app.use('/api/trips-destinations/', tripDestinationRoutes)
 app.use('/api/users-trips/', userTripRoutes)
 
 // connect server on port 3001
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`)
