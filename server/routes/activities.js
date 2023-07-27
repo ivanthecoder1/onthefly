@@ -1,14 +1,12 @@
-// Define routes for trips that match an incoming HTTP request with the controller functions for activities
 import express from 'express'
-import activitiesController from '../controllers/activities.js'
+import { getActivities, getTripActivities, createActivity, deleteActivity, updateActivityLikes } from '../controllers/activities.js'
 
 const router = express.Router()
 
-// Route handlers for /activities
-router.get('/', activitiesController.getActivities)
-router.get('/:id', activitiesController.getTripActivities)
-router.post('/', activitiesController.createActivity)
-router.delete('/:id', activitiesController.deleteActivity)
-router.patch('/:id', activitiesController.updateActivityLikes)
+router.get('/', getActivities)
+router.get('/:trip_id', getTripActivities)
+router.post('/:trip_id', createActivity)
+router.delete('/:id', deleteActivity)
+router.patch('/:id', updateActivityLikes)
 
 export default router
